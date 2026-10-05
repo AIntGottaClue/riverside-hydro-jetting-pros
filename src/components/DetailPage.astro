@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Hero from './Hero.astro';
 import { u } from '../lib/utils';
 import { faqSchema } from '../lib/seo';
+const fixHref = (p: string) => p.replace(/href="(\/[^"]*)"/g, (_m, h) => 'href="' + u(h) + '"');
 const { path, title, description, h1, intro, lead = [], sections = [], faqs = [], sources = [], related = [], parent, name, location, service = false, legal = false } = Astro.props;
 const crumbs = [...(parent ? [{ name: parent.name, path: parent.path }] : []), { name, path }];
 const heroCrumbs = crumbs.map((c) => ({ href: c.path, label: c.name }));
@@ -14,7 +15,7 @@ const heroCrumbs = crumbs.map((c) => ({ href: c.path, label: c.name }));
     {lead.map((p) => <p class="lead" set:html={p} />)}
     {sections.map((s) => (<>
       <h2 class="section-title">{s.h}</h2>
-      {s.ps.map((p) => <p set:html={p} />)}
+      {s.ps.map((p) => <p set:html={fixHref(p)} />)}
     </>))}
     {related.length > 0 && (
       <div class="related-links">
