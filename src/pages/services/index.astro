@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import { services } from '../../data/pages';
+import { u } from '../../lib/utils';
+const title = 'Hydro Jetting Services in Riverside, OH | Drain Cleaning';
+const description = 'Hydro jetting for grease, roots, recurring clogs, mineral buildup and maintenance on drain and sewer lines in Riverside, Ohio.';
+---
+<Base title={title} description={description} path="/services/" crumbs={[{ name: 'Services', path: '/services/' }]}>
+  <Hero headline="Hydro Jetting Services in Riverside, OH" intro="Each service page covers a different kind of blockage and when a closer look at the pipe matters." location="Services" crumbs={[{ href: '/services/', label: 'Services' }]} />
+  <section class="content-section"><div class="content-inner">
+    <div class="card-grid">
+      {services.map((s, i) => <article class="card"><p class="eyebrow">Service {String(i + 1).padStart(2, '0')}</p><h3><a href={u(`/services/${s.slug}/`)}>{s.name}</a></h3><p>{s.blurb}</p></article>)}
+    </div>
+  </div></section>
+</Base>

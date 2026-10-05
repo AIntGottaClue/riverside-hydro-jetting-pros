@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import { neighborhoods } from '../../data/neighborhoods';
+import { u } from '../../lib/utils';
+const title = 'Riverside, OH Neighborhoods | Riverside Hydro Jetting Pros';
+const description = 'Researched local drain cleaning questions within Riverside, OH. Availability must be confirmed.';
+---
+<Base title={title} description={description} path="/neighborhood/" crumbs={[{ name: 'Neighborhoods', path: '/neighborhood/' }]}>
+  <Hero headline="Hydro Jetting Neighborhoods in Riverside, OH" intro="Drain problems are local, and so is the housing. Read the researched local-area drafts for Riverside." location="Neighborhoods" crumbs={[{ href: '/neighborhood/', label: 'Neighborhoods' }]} />
+  <section class="content-section"><div class="content-inner">
+    <div class="card-grid">
+      {neighborhoods.map((n, i) => <article class="card"><p class="eyebrow">Local area {String(i + 1).padStart(2, '0')}</p><h3><a href={u(`/neighborhood/${n.slug}/`)}>{n.name}</a></h3><p>{n.intro}</p></article>)}
+    </div>
+  </div></section>
+</Base>

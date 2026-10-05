@@ -1,0 +1,47 @@
+---
+import Logo from './Logo.astro';
+import { navLinks, business } from '../lib/site';
+import { u } from '../lib/utils';
+---
+<header class="site-header">
+  <div class="header-inner">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navLinks.map((l) => (
+        <div class="nav-item">
+          <a href={u(l.href)}>{l.label}</a>
+          {'children' in l && (
+            <div class="nav-sub"><div class="nav-sub-inner">
+              {l.children.map((a) => <a href={u(a.href)}>{a.label}</a>)}
+            </div></div>
+          )}
+        </div>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <a class="phone-link" href={business.phoneHref}><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.9.6.6 0 1 .4 1 1v3.5c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.4.2 2.7.6 3.9.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg>{business.phoneDisplay}</a>
+      
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" data-menu-toggle>Menu</button>
+  </div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden>
+    {navLinks.map((l) => (
+      <>
+        <a href={u(l.href)}>{l.label}</a>
+        {'children' in l && <div class="mobile-sub">{l.children.map((a) => <a href={u(a.href)}>{a.label}</a>)}</div>}
+      </>
+    ))}
+    <a class="mobile-phone" href={business.phoneHref}>Call {business.phoneDisplay}</a>
+    <a class="mobile-request" href={u('/contact/')}>Request Service</a>
+  </nav>
+</header>
+<script>
+  const btn = document.querySelector('[data-menu-toggle]');
+  const nav = document.getElementById('mobile-navigation');
+  btn?.addEventListener('click', () => {
+    const open = nav.hasAttribute('hidden');
+    if (open) nav.removeAttribute('hidden'); else nav.setAttribute('hidden', '');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Close' : 'Menu';
+  });
+</script>
