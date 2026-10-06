@@ -52,4 +52,5 @@ const tiles = [
     <h2 class="section-title">Questions worth asking before hydro jetting.</h2>
     <div class="content-list">{faqs.map((f) => <article class="faq-row"><h3>{f.q}</h3><p>{f.a}</p></article>)}</div>
   </div></section>
+<section class="nh-body"><div class="nh-inner"><p set:html={`For drain problems, read <a href="/guides/how-hydro-jetting-works/">how hydro jetting works</a>, <a href="/services/recurring-clogs-and-slow-drains/">recurring clogs</a>, <a href="/services/severe-grease-and-sludge/">grease and sludge</a>, <a href="/services/tree-root-intrusions/">tree roots</a> and <a href="/services/preventative-maintenance/">Preventative hydro jetting</a>.`.replace(/href="(\/[^"]*)"/g, (_m, h) => 'href="' + u(h) + '"')} /></div></section>
 </Base>

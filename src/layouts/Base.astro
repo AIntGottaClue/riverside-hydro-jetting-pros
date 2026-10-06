@@ -41,7 +41,7 @@ const canonical = `${SITE_URL}${path}`;
     <SiteHeader />
     <div class="status-strip"><div class="status-inner"><span class="status-text"><span class="status-dot" aria-hidden="true"></span>Hydro jetting information and requests for Riverside, OH</span><a href={business.phoneHref}>{business.phoneDisplay}</a></div></div>
     <main id="main"><slot />
-      <section class="form-band"><div class="band-inner"><div class="band-copy"><p class="eyebrow">Request service</p><h2 class="band-title">Tell us what the drain is doing.</h2><p>Share which fixtures are affected, whether wastewater has backed up and what has been tried. A request is not an appointment, and availability is confirmed by phone.</p><a class="button-primary" href={business.phoneHref}>Prefer to talk? Call {business.phoneDisplay}</a></div><RequestForm location={loc} /></div></section>
+      {!Astro.props.noFormBand && <section class="form-band"><div class="band-inner"><div class="band-copy"><p class="eyebrow">Request service</p><h2 class="band-title">Tell us what the drain is doing.</h2><p>Share which fixtures are affected, whether wastewater has backed up and what has been tried. A request is not an appointment, and availability is confirmed by phone.</p><a class="button-primary" href={business.phoneHref}>Prefer to talk? Call {business.phoneDisplay}</a></div><RequestForm location={loc} /></div></section>}
       {!noCallout && <Callout />}
     </main>
     <SiteFooter />
