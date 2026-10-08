@@ -19,12 +19,11 @@ const img = pageImage(headline);
       <h1>{headline}</h1>
       <p class="hero-copy">{intro}</p>
       <div class="hero-cta"><a class="button-primary" href={business.phoneHref}>Call {business.phoneDisplay}</a><a class="button-soft" href="#request-service">Request a call</a></div>
-      {import.meta.env.BASE_URL === '/' && tiles.length > 0 && <div class="tile-row">{tiles.map((t) => <div class="tile"><strong>{t.big}</strong><span>{t.small}</span></div>)}</div>}
     </div>
     {showImage && (
       <figure class="hero-photo">
         <img src={u(img.src)} alt={img.alt} width="1200" height="896" loading="eager" decoding="async" fetchpriority="high" />
-        <figcaption>{import.meta.env.BASE_URL === '/' && <span class="photo-label">Illustrative image</span>}<strong>Cleaning from the inside of the line</strong>{import.meta.env.BASE_URL === '/' && <span>Not a photo of a local job.</span>}</figcaption>
+        <figcaption><strong>Cleaning from the inside of the line</strong></figcaption>
       </figure>
     )}
   </div>
